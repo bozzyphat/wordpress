@@ -34,13 +34,13 @@ az appservice plan create --name $appservice --resource-group $resourceGroup --s
 Write-Output "Create a Docker Compose app $appname Azure App Service plan $appservice..." | Green
 az webapp create --resource-group $resourceGroup --plan $appservice --name $appname --multicontainer-config-type compose --multicontainer-config-file docker-compose.yml
 
-#Add persistent storage for web app
-Write-Output "Add persistent storage for $appname Azure App Service plan $appservice..." | Green
-az webapp config appsettings set --resource-group $resourceGroup --name $appname --settings WEBSITES_ENABLE_APP_SERVICE_STORAGE=TRUE
-
 #Add the Vnet to webapp
 Write-Output "Adding web app to $subnet in $vNet" | Green
 az webapp vnet-integration add -g $resourceGroup -n $appname --vnet $vNet --subnet $subnet
+
+#Add persistent storage for web app
+Write-Output "Add persistent storage for $appname Azure App Service plan $appservice..." | Green
+az webapp config appsettings set --resource-group $resourceGroup --name $appname --settings WEBSITES_ENABLE_APP_SERVICE_STORAGE=TRUE
 
 #Configure database variables in WordPress
 Write-Output "Configure WordPress-specific environment variables in database" | Green
