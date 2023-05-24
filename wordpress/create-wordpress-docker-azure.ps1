@@ -28,9 +28,6 @@ $wpdbserver ="db-mysql-dev-auseast-001.mysql.database.azure.com"
 Write-Output "Create an Azure App Service plan $appservice in Resources group $resourceGroup..." | Green
 az appservice plan create --name $appservice --resource-group $resourceGroup --sku $appsku --location "$location" --is-linux
 
-#Add a new firewall rules for database server
-#Write-Output "Add a new firewall rules for database server $dbserver..." | Green
-#az mysql server firewall-rule create --name allAzureIPs --server $dbserver --resource-group $resourceGroup --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
 
 #Create a Docker Compose app
 Write-Output "Create a Docker Compose app $appname Azure App Service plan $appservice..." | Green

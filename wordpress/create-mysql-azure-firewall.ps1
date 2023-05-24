@@ -5,6 +5,15 @@ function Green
     process { Write-Host $_ -ForegroundColor Green }
 }
 
+#Install Azure CLI
+#Write-Output "Install Azure CLI" | Green
+#winget install azure-cli
+
+#Install Azure Powershell
+#Write-Output "Install Azure Powershell" | Green
+#Install-Module -Name Az -Repository PSGallery 
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 # Variable block
 $location ="australiaeast"
@@ -21,15 +30,6 @@ $vNetAddressPrefix ="10.0.0.0/16"
 $subnet ="subnet-wp-dev-auseast-001"
 $subnetAddressPrefix ="10.0.1.0/24"
 $rule ="rule-wp-dev-auseast"
-
-
-#Install Azure CLI
-#Write-Output "Install Azure CLI" | Green
-#winget install azure-cli
-
-#Install Azure Powershell
-#Write-Output "Install Azure Powershell" | Green
-#Install-Module -Name Az -Repository PSGallery 
 
 
 Write-Output "Login with Azure account" | Green
@@ -70,6 +70,11 @@ az mysql server create --name $server --resource-group $resourceGroup --location
 Write-Output  "Configuring a firewall rule for $server allow azure services" | Green
 az mysql server firewall-rule create --resource-group $resourceGroup --server $server -n AllowAllWindowsAzureIps --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
 
+
+# Create wordpress databse on the databse server
+Write-Output "Create wordpress databse on the databse server $server" | Green
+az mysql db create --resource-group $resourceGroup --server-name $server --name wordpress
+
 # Get available service endpoints for Azure region output is JSON
 #Write-Output "List of available service endpoints for $location" | Green
 #az network vnet list-endpoint-services --location "$location"
@@ -92,11 +97,6 @@ az mysql server firewall-rule create --resource-group $resourceGroup --server $s
 #Write-Output "Creating a VNet rule on $server to secure it to $subnet in $vNet" | Green
 #az mysql server vnet-rule create --name $rule --resource-group $resourceGroup --server $server --vnet-name $vNet --subnet $subnet
 # </FullScript>
-
-# Create wordpress databse on the databse server
-Write-Output "Create wordpress databse on the databse server $server" | Green
-az mysql db create --resource-group $resourceGroup --server-name $server --name wordpress
-
 
 
 # echo "Deleting all resources"

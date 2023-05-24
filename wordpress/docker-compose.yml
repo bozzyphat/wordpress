@@ -2,9 +2,9 @@ version: '3.3'
 
 services:
    wordpress:
-     image: mcr.microsoft.com/azuredocs/multicontainerwordpress
-     volumes:
-      - ${WEBAPP_STORAGE_HOME}/site/wwwroot:/var/www/html
+     image: wordpress:latest
      ports:
        - "8000:80"
      restart: always
+volumes:
+    db_data:
