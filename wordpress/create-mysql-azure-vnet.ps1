@@ -65,7 +65,7 @@ $dbpassword = az keyvault secret show --name $SecretName --vault-name $akvName -
 # Create a mysql server in the resource group
 # Name of a server maps to DNS name and is thus required to be globally unique in Azure.
 Write-Output "Creating $server in $location..." | Green
-az mysql server create --name $server --resource-group $resourceGroup --location "$location" --admin-user $login --admin-password $dbpassword --sku-name $mysqlsku --ssl-enforcement Disabled --backup-retention $backupretention --geo-redundant-backup Disabled --storage-size $storagesize
+az mysql server create --name $server --resource-group $resourceGroup --location "$location" --admin-user $login --admin-password $dbpassword --sku-name $mysqlsku --ssl-enforcement Disabled --backup-retention $backupretention --geo-redundant-backup Disabled --storage-size $storagesize --version 5.7
 
 
 # Get available service endpoints for Azure region output is JSON
@@ -95,8 +95,7 @@ az mysql server vnet-rule create --name $rule --resource-group $resourceGroup --
 Write-Output "Create wordpress databse on the databse server $server" | Green
 az mysql db create --resource-group $resourceGroup --server-name $server --name wordpress
 
-#Configure database variables in WordPress
-Write-Output "Configure WordPress-specific environment variables in database" | Green
+
 
 # echo "Deleting all resources"
 # az group delete --name $resourceGroup -y
