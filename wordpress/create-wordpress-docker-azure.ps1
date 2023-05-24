@@ -20,8 +20,8 @@ $login ="azureuser"
 $secretName = "mysqlpass"
 $akvName ="akv-wp-dev-aus"
 $dbpassword = az keyvault secret show --name $SecretName --vault-name $akvName --query value -o tsv
-$dbserver ="db-mysql-dev-auseast-001"
-$wpdbserver ="db-mysql-dev-auseast-001.mysql.database.azure.com"
+$dbserver ="mysql-dev-auseast-001"
+$wpdbserver ="mysql-dev-auseast-001.mysql.database.azure.com"
 
 
 #Create an Azure App Service plan

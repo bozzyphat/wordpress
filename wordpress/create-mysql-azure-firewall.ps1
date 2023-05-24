@@ -21,7 +21,7 @@ $resourceGroup ="rg-wp-dev-auseast-001"
 $akvName ="akv-wp-dev-aus"
 $akvsku ="standard"
 $tag ="wordpress-service"
-$server ="db-mysql-dev-auseast-001"
+$server ="mysql-dev-auseast-001"
 $mysqlsku ="GP_Gen5_2"
 $backupretention ="7"
 $storagesize ="10240"
@@ -48,7 +48,7 @@ Write-Output "Creating mysql Database Login Password in Keyvault $akvName..." | 
 
 # Variable block for Keyvault Secret
 $secretName = "mysqlpass"
-$secret = Read-Host 'Type in the password You want to use for mysql Database Login' -AsSecureString
+$secret = Read-Host 'Type in the password you want to use for mysql Database Login' -AsSecureString
 $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($secret)
 $plainSecret = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
 # Set the value for Secret (password)
@@ -72,7 +72,7 @@ az mysql server firewall-rule create --resource-group $resourceGroup --server $s
 
 
 # Create wordpress databse on the databse server
-Write-Output "Create wordpress databse on the databse server $server" | Green
+Write-Output "Create wordpress database on the databse server $server" | Green
 az mysql db create --resource-group $resourceGroup --server-name $server --name wordpress
 
 # Get available service endpoints for Azure region output is JSON
