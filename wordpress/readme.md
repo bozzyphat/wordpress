@@ -18,7 +18,10 @@ Stage 3:
         .\create-wordpress-docker-azure.ps1
 
 Stage 4:
-    *****Before running the PowerShell script, make sure you change the variable $dbserver value (the value is the name of the current running MYSQL database server)******
+    ****Before running the PowerShell script, make sure you change the variable $dbserver value (the value is the name of the current running MYSQL database server)****
+
+    *****Also make sure you type in the correct date format to restore the databse, point-in-time (in UTC) to restore from, use the ISO8601 format with your local timezone: 2023-05-24T05:59:00Z****
+
     Run the PowerShell script with Admin privileges:
     This script will restore the MYSQL database to the specific data within the retention range 
         .\restore-mysql-azure.ps1
