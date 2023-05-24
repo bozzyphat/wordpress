@@ -5,7 +5,6 @@ function Green
     process { Write-Host $_ -ForegroundColor Green }
 }
 
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 # Variable block
 $location ="australiaeast"
@@ -65,7 +64,7 @@ $dbpassword = az keyvault secret show --name $SecretName --vault-name $akvName -
 # Create a mysql server in the resource group
 # Name of a server maps to DNS name and is thus required to be globally unique in Azure.
 Write-Output "Creating $server in $location..." | Green
-az mysql server create --name $server --resource-group $resourceGroup --location "$location" --admin-user $login --admin-password $dbpassword --sku-name $mysqlsku --ssl-enforcement Disabled --backup-retention $backupretention --public-access all --geo-redundant-backup Disabled --storage-size $storagesize --version 5.7
+az mysql server create --name $server --resource-group $resourceGroup --location "$location" --admin-user $login --admin-password $dbpassword --sku-name $mysqlsku --ssl-enforcement Disabled --backup-retention $backupretention --geo-redundant-backup Disabled --storage-size $storagesize --version 5.7
 
 #Configuring a firewall rule for MySQl server  allow azure services
 Write-Output  "Configuring a firewall rule for $server allow azure services" | Green

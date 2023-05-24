@@ -5,7 +5,8 @@ function Green
     process { Write-Host $_ -ForegroundColor Green }
 }
 
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Write-Output "Login with Azure account" | Green
+az login 
 
 # Variable block
 $location ="australiaeast"
@@ -17,13 +18,10 @@ $vNet ="vNet-wp-dev-auseast-001"
 $subnet ="subnet-wp-dev-auseast-001"
 $login ="azureuser"
 $secretName = "mysqlpass"
-$akvName ="db-mysql-dev-auseast-001"
+$akvName ="akv-wp-dev-aus"
 $dbpassword = az keyvault secret show --name $SecretName --vault-name $akvName --query value -o tsv
 $dbserver ="db-mysql-dev-auseast-001"
 $wpdbserver ="db-mysql-dev-auseast-001.mysql.database.azure.com"
-
-Write-Output "Login with Azure account" | Green
-az login 
 
 
 #Create an Azure App Service plan
