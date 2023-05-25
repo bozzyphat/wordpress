@@ -24,7 +24,7 @@ ________________________________________________________________________________
 Backup and restore MySQL database
 _______________________________________________________________________________________________________________________
 Stage 1:
-    *****Make sure you type in the correct date format to restore the database, point-in-time (in UTC) to restore from, and use the ISO8601 format with your local timezone: 2023-05-24T05:59:00Z****
+    *****Make sure you type in the correct date format to restore the database point-in-time (in UTC) to restore from, and use the ISO8601 format: 2023-05-24T05:59:00Z****
 
     Run the PowerShell script with Admin privileges:
     This script will restore the original MYSQL database to a new database server within the backup retention time (7 days) 
