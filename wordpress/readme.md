@@ -29,6 +29,12 @@ Stage 1:
 
 Stage 2:
     Run the PowerShell script with Admin privileges:
-    This script will allow you to chaneg the WordPress database to the newly created restore databse server
+    This script will allow you to change the WordPress database to the newly created restore databse server
         .\change-wordpress-databse.ps1
 
+
+Backup and restore Azure Web App
+Stage 1:
+    Run the PowerShell script with Admin privileges:
+    This script will restore the web app to the selected restore points
+        .\restore-wordpress-azure.ps1

@@ -35,5 +35,5 @@ $dbserver=Read-Host 'Type in the Mysql server going to be used'
 
 
 #Configure database variables in WordPress
-#Write-Output "Configure WordPress-specific environment variables in database" | Green
+Write-Output "Change Wordpress web app databse to $dbserver" | Green
 az webapp config appsettings set --resource-group $resourceGroup --name $appname --settings WORDPRESS_DB_HOST="$dbserver".mysql.database.azure.com WORDPRESS_DB_USER=$login WORDPRESS_DB_PASSWORD=$dbpassword WORDPRESS_DB_NAME="wordpress" MYSQL_SSL_CA="BaltimoreCyberTrustroot.crt.pem"
