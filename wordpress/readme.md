@@ -1,4 +1,5 @@
 Create WordPress app service on Azure 
+_______________________________________________________________________________________________________________________
 Stage 1:
     Install the Azure CLI and docker
 
@@ -20,6 +21,7 @@ Stage 3:
 
 
 Backup and restore MySQL database
+_______________________________________________________________________________________________________________________
 Stage 1:
     *****Make sure you type in the correct date format to restore the database, point-in-time (in UTC) to restore from, and use the ISO8601 format with your local timezone: 2023-05-24T05:59:00Z****
 
@@ -34,6 +36,7 @@ Stage 2:
 
 
 Backup and restore Azure Web App
+________________________________________________________________________________________________________________________
 Stage 1:
     Run the PowerShell script with Admin privileges:
     This script will restore the web app to the selected restore points
