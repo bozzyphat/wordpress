@@ -18,7 +18,7 @@ $resourceGroup ="rg-wp-dev-auseast-001"
 $login ="azureuser"
 $randomIdentifier = Get-Random -Maximum 100
 $location ="australiaeast"
-$resourceGroup ="rg-wp-dev-auseast-001"
+
 $tag ="wordpress-service"
 $restoreserver ="mysql-dev-auseast-$randomIdentifier"
 $mysqlsku ="GP_Gen5_2"
@@ -41,11 +41,12 @@ $dbserver=Read-Host 'Type in the original Mysql server curretly using by web app
 #Variable to get the list of current web app restore points 
 Write-Output "Current list of restore points for web app $appname " | Green
 az webapp config snapshot list --name $appname --resource-group $resourceGroup -o table
-$restoretime=Read-Host 'Type in the selected snapshot time to be restore, follow with the result format 2023-05-24T22:45:17.0054237'  
+$restoretime=Read-Host 'Type in the selected snapshot time to be restore, follow with the result format 2023-05-24T22:45:17.0054237' 
+
 
 # Restore a database server from backup to a new server
 Write-Output  "Restoring data from $dbserver to $restoreServer follow the time $restoretime" | Green
-az mysql server restore --name $restoreServer --resource-group $resourceGroup --restore-point-in-time $restoretime --source-server $dbserver
+az mysql server restore --name $restoreServer --resource-group $resourceGroup --restore-point-in-time "$restoretime+12:00" --source-server $dbserver
 
 #Configuring a firewall rule for MySQl server  allow azure services
 Write-Output  "Configuring a firewall rule for $restoreserver allow azure services" | Green
