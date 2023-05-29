@@ -90,8 +90,8 @@ resource "azurerm_storage_account" "my_storage_account" {
 # Create virtual machine
 resource "azurerm_windows_virtual_machine" "main" {
   name                  = "${var.prefix}-vm"
-  admin_username        = "azureuser"
-  admin_password        = random_password.password.result
+  admin_username        = var.vm-username
+  admin_password        = var.vm-password
   location              = azurerm_resource_group.rg.location
   resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.my_terraform_nic.id]
@@ -128,8 +128,10 @@ resource "azurerm_virtual_machine_extension" "web_server_install" {
   settings = <<SETTINGS
     {
       "commandToExecute": "powershell -ExecutionPolicy Unrestricted Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature -IncludeManagementTools"
+     
     }
   SETTINGS
+
 }
 
 # Generate random text for a unique storage account name
@@ -142,14 +144,7 @@ resource "random_id" "random_id" {
   byte_length = 8
 }
 
-resource "random_password" "password" {
-  length      = 20
-  min_lower   = 1
-  min_upper   = 1
-  min_numeric = 1
-  min_special = 1
-  special     = true
-}
+
 
 resource "random_pet" "prefix" {
   prefix = var.prefix
