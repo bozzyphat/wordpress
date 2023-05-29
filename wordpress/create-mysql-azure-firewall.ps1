@@ -66,6 +66,7 @@ $dbpassword = az keyvault secret show --name $SecretName --vault-name $akvName -
 Write-Output "Creating $server in $location..." | Green
 az mysql server create --name $server --resource-group $resourceGroup --location "$location" --admin-user $login --admin-password $dbpassword --sku-name $mysqlsku --ssl-enforcement Disabled --backup-retention $backupretention --geo-redundant-backup Disabled --storage-size $storagesize --version 5.7
 
+
 #Configuring a firewall rule for MySQl server  allow azure services
 Write-Output  "Configuring a firewall rule for $server allow azure services" | Green
 az mysql server firewall-rule create --resource-group $resourceGroup --server $server -n AllowAllWindowsAzureIps --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
