@@ -38,7 +38,7 @@ resource "azurerm_network_security_group" "my_terraform_nsg" {
     priority                   = 1000
     direction                  = "Inbound"
     access                     = "Allow"
-    protocol                   = "*"
+    protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "443"
     source_address_prefix      = "*"
