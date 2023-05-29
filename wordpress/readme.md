@@ -42,3 +42,11 @@ Stage 1:
     Run the PowerShell script with Admin privileges:
     This script will restore the web app to the selected restore points
         .\restore-wordpress-azure.ps1
+
+_______________________________________________________________________________________________________________________
+Backup and restore Azure Web App and Mysql Databse in the same restore point
+________________________________________________________________________________________________________________________
+Stage 1:
+    Run the PowerShell script with Admin privileges:
+    This script will restore the web app and databse server to the selected restore points
+        .\restore-wordpress-mysql.ps1
