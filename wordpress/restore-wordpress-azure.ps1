@@ -31,5 +31,5 @@ az webapp config snapshot list --name $appname --resource-group $resourceGroup -
 $restoretime=Read-Host 'Type in the selected snapshot time to be restore, follow with the result format 2023-05-24T22:45:17.0054237'  
 
 #Restore the web app
-Write-Output "Restore web app $appname to the restore point in time $restoretime" | Green
+Write-Output "Restore web app $appname to the restore point in time $restoretime, the restore point in time is in UTC" | Green
 az webapp config snapshot restore --name $appname --resource-group $resourceGroup --time $restoretime

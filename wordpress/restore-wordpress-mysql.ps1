@@ -18,7 +18,6 @@ $resourceGroup ="rg-wp-dev-auseast-001"
 $login ="azureuser"
 $randomIdentifier = Get-Random -Maximum 100
 $location ="australiaeast"
-
 $tag ="wordpress-service"
 $restoreserver ="mysql-dev-auseast-$randomIdentifier"
 $mysqlsku ="GP_Gen5_2"
@@ -39,14 +38,14 @@ az webapp config appsettings list --name $appname --resource-group $resourceGrou
 $dbserver=Read-Host 'Type in the original Mysql server curretly using by web app, make sure only use the databse name with out .mysql.database.azure.com' 
 
 #Variable to get the list of current web app restore points 
-Write-Output "Current list of restore points for web app $appname " | Green
+Write-Output "Current list of restore points for web app $appname, the restore point time is in UTC " | Green
 az webapp config snapshot list --name $appname --resource-group $resourceGroup -o table
 $restoretime=Read-Host 'Type in the selected snapshot time to be restore, follow with the result format 2023-05-24T22:45:17.0054237' 
 
 
 # Restore a database server from backup to a new server
 Write-Output  "Restoring data from $dbserver to $restoreServer follow the time $restoretime" | Green
-az mysql server restore --name $restoreServer --resource-group $resourceGroup --restore-point-in-time "$restoretime+12:00" --source-server $dbserver
+az mysql server restore --name $restoreServer --resource-group $resourceGroup --restore-point-in-time "$restoretime" --source-server $dbserver
 
 #Configuring a firewall rule for MySQl server  allow azure services
 Write-Output  "Configuring a firewall rule for $restoreserver allow azure services" | Green
@@ -64,5 +63,5 @@ $dbpassword = az keyvault secret show --name $SecretName --vault-name $akvName -
 
 
 #Configure database variables in WordPress
-Write-Output "Change Wordpress web app databse to $dbserver" | Green
-az webapp config appsettings set --resource-group $resourceGroup --name $appname --settings WORDPRESS_DB_HOST="$dbserver".mysql.database.azure.com WORDPRESS_DB_USER=$login WORDPRESS_DB_PASSWORD=$dbpassword WORDPRESS_DB_NAME="wordpress" MYSQL_SSL_CA="BaltimoreCyberTrustroot.crt.pem"
+Write-Output "Change Wordpress web app databse to $restoreServer" | Green
+az webapp config appsettings set --resource-group $resourceGroup --name $appname --settings WORDPRESS_DB_HOST="$restoreServer".mysql.database.azure.com WORDPRESS_DB_USER=$login WORDPRESS_DB_PASSWORD=$dbpassword WORDPRESS_DB_NAME="wordpress" MYSQL_SSL_CA="BaltimoreCyberTrustroot.crt.pem"
