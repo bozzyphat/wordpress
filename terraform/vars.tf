@@ -1,12 +1,9 @@
-variable "location" {
+variable "resource_group_location" {
     type = string
     default = "australiaeast"
-  
 }
 
-variable "resoruce-group-name" {
+variable "prefix" {
     type = string
-    default = "rg-dev-auseast-02"
-  
+    default = "demo"
 }
-
