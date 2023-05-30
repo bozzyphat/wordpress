@@ -13,10 +13,7 @@ Write-Output "Login with Azure account" | Green
 az login 
 
 # Variable block
-$location ="australiaeast"
 $resourceGroup ="rg-wp-dev-auseast-001"
-$login ="azureuser"
-
 
 
 

@@ -13,17 +13,10 @@ Write-Output "Login with Azure account" | Green
 az login 
 
 # Variable block
-$location ="australiaeast"
 $resourceGroup ="rg-wp-dev-auseast-001"
 $login ="azureuser"
 $randomIdentifier = Get-Random -Maximum 100
-$location ="australiaeast"
-$tag ="wordpress-service"
 $restoreserver ="mysql-dev-auseast-$randomIdentifier"
-$mysqlsku ="GP_Gen5_2"
-$backupretention ="7"
-$storagesize ="10240"
-
 
 
 #Variable to get the list of current web app

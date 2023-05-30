@@ -14,13 +14,12 @@ $resourceGroup ="rg-wp-dev-auseast-001"
 $appservice="app-wp-dev-auseast-001"
 $appsku ="S2"
 $appname="wp-dev-001"
-$vNet ="vNet-wp-dev-auseast-001"
-$subnet ="subnet-wp-dev-auseast-001"
+#$vNet ="vNet-wp-dev-auseast-001"
+#$subnet ="subnet-wp-dev-auseast-001"
 $login ="azureuser"
 $secretName = "mysqlpass"
 $akvName ="akv-wp-dev-aus"
 $dbpassword = az keyvault secret show --name $SecretName --vault-name $akvName --query value -o tsv
-$dbserver ="mysql-dev-auseast-001"
 $wpdbserver ="mysql-dev-auseast-001.mysql.database.azure.com"
 
 

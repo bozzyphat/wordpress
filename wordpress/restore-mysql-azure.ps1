@@ -14,14 +14,8 @@ az login
 
 # Variable block
 $randomIdentifier = Get-Random -Maximum 100
-$location ="australiaeast"
 $resourceGroup ="rg-wp-dev-auseast-001"
-$tag ="wordpress-service"
 $restoreserver ="mysql-dev-auseast-$randomIdentifier"
-$mysqlsku ="GP_Gen5_2"
-$backupretention ="7"
-$storagesize ="10240"
-$login ="azureuser"
 
 
 #Variable to get the list of current databse 
