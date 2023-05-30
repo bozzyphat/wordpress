@@ -25,11 +25,11 @@ $server ="mysql-dev-auseast-001"
 $mysqlsku ="GP_Gen5_2"
 $backupretention ="7"
 $storagesize ="10240"
-$vNet ="vNet-wp-dev-auseast-001"
-$vNetAddressPrefix ="10.0.0.0/16"
-$subnet ="subnet-wp-dev-auseast-001"
-$subnetAddressPrefix ="10.0.1.0/24"
-$rule ="rule-wp-dev-auseast"
+#$vNet ="vNet-wp-dev-auseast-001"
+#$vNetAddressPrefix ="10.0.0.0/16"
+#$subnet ="subnet-wp-dev-auseast-001"
+#$subnetAddressPrefix ="10.0.1.0/24"
+#$rule ="rule-wp-dev-auseast"
 
 
 Write-Output "Login with Azure account" | Green
