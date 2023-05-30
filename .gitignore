@@ -3,3 +3,4 @@
 *.tfstate
 *.hcl
 *.info
+terraform/terraform.tfstate.backup
